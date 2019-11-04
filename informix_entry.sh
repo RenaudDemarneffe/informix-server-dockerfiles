@@ -300,7 +300,7 @@ else
       sudo sh -c 'echo ". /usr/local/bin/informix_inf.env" >> /root/.profile'
 
 
-      #sudo $INFORMIXDIR/gskit/installgskit
+      sudo $INFORMIXDIR/gskit/installgskit
       #sudo touch /etc/hosts.equiv
       #sudo sh -c "printf '++\n' >> /etc/hosts.equiv"
    fi
