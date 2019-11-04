@@ -9,10 +9,10 @@
 ### SQLHOSTS file contains the previous HOSTNAME value
 ###
 old_hostname=`grep "HOST NAME" $INFORMIXSQLHOSTS |awk '{print $5}' ` 
-#sed -i "s/${old_hostname}/${HOSTNAME}/g" $INFORMIXSQLHOSTS
-sed -i "s/${old_hostname}/${HOSTNAME}/g" $INFORMIX_CONFIG_DIR/sqlhosts
+#SED "s/${old_hostname}/${HOSTNAME}/g" $INFORMIXSQLHOSTS
+SED "s/${old_hostname}/${HOSTNAME}/g" $INFORMIX_CONFIG_DIR/sqlhosts
 
 
 ### Update HOSTNAME in WL config file
 ###
-#sed -i "s/${old_hostname}/${HOSTNAME}/g" $INFORMIXSQLHOSTS
+#SED "s/${old_hostname}/${HOSTNAME}/g" $INFORMIXSQLHOSTS

@@ -114,8 +114,8 @@ function setCPUResources()
       MSGLOG ">>>    OVERRIDE CPUs set to 1 ..." N 
    fi
 
-   #sed -i "s#^VPCLASS cpu.*#VPCLASS cpu,num=$E_NUMCPU,noage#g" "${ONCONFIG_PATH}"
-   #sed -i "s#^MULTIPROCESSOR.*#MULTIPROCESSOR $E_MULTI#g" "${ONCONFIG_PATH}"
+   #SED "s#^VPCLASS cpu.*#VPCLASS cpu,num=$E_NUMCPU,noage#g" "${ONCONFIG_PATH}"
+   #SEDULTIPROCESSOR.*#MULTIPROCESSOR $E_MULTI#g" "${ONCONFIG_PATH}"
    SED "s#^VPCLASS cpu.*#VPCLASS cpu,num=$E_NUMCPU,noage#g" "${INFORMIXDIR}/etc/${ONCONFIG}" Y
    SED "s#^MULTIPROCESSOR.*#MULTIPROCESSOR $E_MULTI#g" "${INFORMIXDIR}/etc/${ONCONFIG}" Y
 
@@ -126,30 +126,30 @@ function setCPUResources()
    ### Relate to informix_config.small
    if [ `expr $E_NUMCPU` -lt 4 ]
    then
-      sed -i "s#^LOCKS.*#LOCKS 50000#g" "${ONCONFIG_PATH}"
-      sed -i "s#^LOGBUFF.*#LOGBUFF 128#g" "${ONCONFIG_PATH}"
-      sed -i "s#^NETTYPE.*#NETTYPE soctcp,1,200,CPU#g" "${ONCONFIG_PATH}"
-      sed -i "s#^PHYSBUFF.*#PHYSBUFF 128#g" "${ONCONFIG_PATH}"
-      sed -i "s#^VP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 0#g" "${ONCONFIG_PATH}"
+      SEDOCKS.*#LOCKS 50000#g" "${ONCONFIG_PATH}"
+      SEDOGBUFF.*#LOGBUFF 128#g" "${ONCONFIG_PATH}"
+      SEDETTYPE.*#NETTYPE soctcp,1,200,CPU#g" "${ONCONFIG_PATH}"
+      SEDHYSBUFF.*#PHYSBUFF 128#g" "${ONCONFIG_PATH}"
+      SEDP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 0#g" "${ONCONFIG_PATH}"
 
    ### Medium System
    ### Relate to informix_config.medium
    elif [ `expr $E_NUMCPU` -lt 8 ]
    then
-      sed -i "s#^LOCKS.*#LOCKS 100000#g" "${ONCONFIG_PATH}"
-      sed -i "s#^LOGBUFF.*#LOGBUFF 256#g" "${ONCONFIG_PATH}"
-      sed -i "s#^NETTYPE.*#NETTYPE soctcp,4,200,CPU#g" "${ONCONFIG_PATH}"
-      sed -i "s#^PHYSBUFF.*#PHYSBUFF 256#g" "${ONCONFIG_PATH}"
-      sed -i "s#^VP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 2048#g" "${ONCONFIG_PATH}"
+      SEDOCKS.*#LOCKS 100000#g" "${ONCONFIG_PATH}"
+      SEDOGBUFF.*#LOGBUFF 256#g" "${ONCONFIG_PATH}"
+      SEDETTYPE.*#NETTYPE soctcp,4,200,CPU#g" "${ONCONFIG_PATH}"
+      SEDHYSBUFF.*#PHYSBUFF 256#g" "${ONCONFIG_PATH}"
+      SEDP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 2048#g" "${ONCONFIG_PATH}"
 
    ### Large System
    ### Relate to informix_config.large
    else
-      sed -i "s#^LOCKS.*#LOCKS 250000#g" "${ONCONFIG_PATH}"
-      sed -i "s#^LOGBUFF.*#LOGBUFF 512#g" "${ONCONFIG_PATH}"
-      sed -i "s#^NETTYPE.*#NETTYPE soctcp,8,200,CPU#g" "${ONCONFIG_PATH}"
-      sed -i "s#^PHYSBUFF.*#PHYSBUFF 512#g" "${ONCONFIG_PATH}"
-      sed -i "s#^VP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 4096#g" "${ONCONFIG_PATH}"
+      SEDOCKS.*#LOCKS 250000#g" "${ONCONFIG_PATH}"
+      SEDOGBUFF.*#LOGBUFF 512#g" "${ONCONFIG_PATH}"
+      SEDETTYPE.*#NETTYPE soctcp,8,200,CPU#g" "${ONCONFIG_PATH}"
+      SEDHYSBUFF.*#PHYSBUFF 512#g" "${ONCONFIG_PATH}"
+      SEDP_MEMORY_CACHE_KB.*#VP_MEMORY_CACHE_KB 4096#g" "${ONCONFIG_PATH}"
 
    fi
 
@@ -205,10 +205,10 @@ function setMEMResources()
    vBUFFERS=${vBUFFERS%.*}
 
 
-   sed -i "s#^BUFFERPOOL size=2k.*#BUFFERPOOL size=2k,buffers=$vBUFFERS,lrus=8,lru_min_dirty=50,lru_max_dirty=60#g" "${ONCONFIG_PATH}"
-   sed -i "s#^SHMTOTAL.*#SHMTOTAL $vSHMTOTAL#g" "${ONCONFIG_PATH}"
-   sed -i "s#^SHMVIRTSIZE.*#SHMVIRTSIZE $vSHMVIRTSIZE#g" "${ONCONFIG_PATH}"
-   sed -i "s#^DS_NONPDQ_QUERY_MEM.*#DS_NONPDQ_QUERY_MEM $vNONPDQ#g" "${ONCONFIG_PATH}"
+   SEDUFFERPOOL size=2k.*#BUFFERPOOL size=2k,buffers=$vBUFFERS,lrus=8,lru_min_dirty=50,lru_max_dirty=60#g" "${ONCONFIG_PATH}"
+   SEDHMTOTAL.*#SHMTOTAL $vSHMTOTAL#g" "${ONCONFIG_PATH}"
+   SEDHMVIRTSIZE.*#SHMVIRTSIZE $vSHMVIRTSIZE#g" "${ONCONFIG_PATH}"
+   SEDS_NONPDQ_QUERY_MEM.*#DS_NONPDQ_QUERY_MEM $vNONPDQ#g" "${ONCONFIG_PATH}"
 
 
 
@@ -233,10 +233,10 @@ function setGenericResources()
 ### DUMPSHMEM 0
 ### RESIDENT -1
 
-   sed -i "s#^AUTO_TUNE.*#AUTO_TUNE 1#g" "${ONCONFIG_PATH}"
-   sed -i "s#^DIRECT_IO.*#DIRECT_IO 1#g" "${ONCONFIG_PATH}"
-   sed -i "s#^DUMPSHMEM.*#DUMPSHMEM 0#g" "${ONCONFIG_PATH}"
-   sed -i "s#^RESIDENT.*#RESIDENT -1#g" "${ONCONFIG_PATH}"
+   SEDUTO_TUNE.*#AUTO_TUNE 1#g" "${ONCONFIG_PATH}"
+   SEDIRECT_IO.*#DIRECT_IO 1#g" "${ONCONFIG_PATH}"
+   SEDUMPSHMEM.*#DUMPSHMEM 0#g" "${ONCONFIG_PATH}"
+   SEDESIDENT.*#RESIDENT -1#g" "${ONCONFIG_PATH}"
 
 }
 
