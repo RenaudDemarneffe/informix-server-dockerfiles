@@ -32,13 +32,15 @@ SUCCESS=0
 FAILURE=-1
 
 ## Resource Limit files.  
-CPUFILE="/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+CPUFILE_QUOTA="/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+CPUFILE_PERIOD="/sys/fs/cgroup/cpu/cpu.cfs_period_us"
 MEMFILE="/sys/fs/cgroup/memory/memory.limit_in_bytes"
 
 vSYSTEM_MEM_LIMIT_B=`cat $MEMFILE`
 vSYSTEM_MEM_LIMIT_MB=`echo "($vSYSTEM_MEM_LIMIT_B / 1024) / 1024" | bc`
 
-vCPUS_CONTAINER=`cat $CPUFILE`
+vCPUS_CONTAINER_QUOTA=`cat $CPUFILE_QUOTA`
+vCPUS_CONTAINER_PERIOD=`cat $CPUFILE_PERIOD`
 
 vMEM_HOST_MB=`free -m |grep Mem|awk '{print $2}'`
 vCPUS_HOST=`lscpu |grep "CPU(s):"|grep -v node|awk '{print $2}'`
@@ -50,7 +52,7 @@ if [[ $vCPUS_CONTAINER == "-1" ]]
 then
    vCPUS=$vCPUS_HOST
 else
-   vCPUS=`echo "$vCPUS_CONTAINER / 100000" | bc`
+   vCPUS=`echo "$vCPUS_CONTAINER_QUOTA / $vCPUS_CONTAINER_PERIOD" | bc`
 fi
 
 ###
