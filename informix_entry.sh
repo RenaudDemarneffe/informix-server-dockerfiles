@@ -341,6 +341,12 @@ then
    MSGLOG "       [COMPLETED]" N 
 fi
 
+# If no links exists into $INFORMIXDIR/etc/ for onconfig and/or sqlhosts
+# create the links
+# It will be mainly used in case on container restart (database initialized).
+MSGLOG ">>>    Create ONCONFIG and/or SQLHOSTS links into $INFORMIXDIR/etc/ ..."  N
+. $SCRIPTS/informix_setup_links.sh
+
 ###
 ### Setup sch_init_xxxxxxx.sql script 
 ### 
