@@ -46,7 +46,7 @@ then
    if [[ $cnt = "0" ]];
    then
    MSGLOG ">>>    Ressetting INFORMIX_DATA_DIR ..." N
-   sudo SED --follow-symlinks "s/data/localdata/g" ${ENVFILE} 
+   sudo SED "s/data/localdata/g" ${ENVFILE} 
    fi
 fi
 
@@ -56,7 +56,7 @@ fi
 if [[ ! -z $DBSERVERNAME ]] 
 then
 MSGLOG ">>>    RESETTING INFORMIXSERVER = ${DBSERVERNAME}"
-sudo SED --follow-symlinks "s/INFORMIXSERVER=informix/INFORMIXSERVER=${DBSERVERNAME}/g" ${ENVFILE} 
+sudo SED "s/INFORMIXSERVER=informix/INFORMIXSERVER=${DBSERVERNAME}/g" ${ENVFILE} 
 fi
 
 . $ENVFILE 
