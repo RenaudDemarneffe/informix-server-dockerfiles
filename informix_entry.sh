@@ -699,7 +699,7 @@ fi
 function SED()
 {
 [[ `echo $3|tr /a-z/ /A-Z/` == "Y" ]] && MSGLOG  ">>>    SED $1 $2"
-SED --follow-symlinks "$1" "$2"
+sed -i --follow-symlinks "$1" "$2"
 }
 
 
